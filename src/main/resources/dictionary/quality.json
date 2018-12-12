@@ -1,0 +1,26 @@
+{
+    "woozy": {
+        "comparative": "woozier",
+        "superlative": "wooziest"
+    },
+    "shitty": {
+        "comparative": "shittier",
+        "superlative": "shittiest"
+    },
+    "catty": {
+        "comparative": "cattier",
+        "superlative": "cattiest"
+    },
+    "stupid": {
+        "comparative": "stupider",
+        "superlative": "stupidest"
+    },
+    "cold": {
+        "comparative": "colder",
+        "superlative": "coldest"
+    },
+    "hot": {
+        "comparative": "hotter",
+        "superlative": "hottest"
+    }
+}

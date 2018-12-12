@@ -1,0 +1,20 @@
+{
+    "laptop": {
+        "plural": "laptops"
+    },
+    "bed": {
+        "plural": "beds"
+    },
+    "engine": {
+        "plural": "engines"
+    },
+    "night": {
+        "plural": "nights"
+    },
+    "car": {
+        "plural": "cars"
+    },
+    "iPhone": {
+        "plural": "iPhones"
+    }
+}

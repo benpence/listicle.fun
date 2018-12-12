@@ -1,0 +1,52 @@
+name:                listicle
+version:             0.1.0.0
+stability:           Experimental
+category:            Web
+author:              Ben Pence
+maintainer:          github@benpence.com
+build-type:          Simple
+cabal-version:       >= 1.10
+
+data-files:
+  src/main/resources/listicles.list
+  src/main/resources/dictionary/*.json
+
+executable listicle-main
+  hs-source-dirs:             src/main/haskell/Main
+  main-is:                    Main.hs
+
+  build-depends:
+      base
+    , containers
+    , directory
+    , listicle
+    , random
+    , scotty
+    , text
+
+  default-language:           Haskell2010
+
+library
+  hs-source-dirs:             src/main/haskell
+  exposed-modules:
+    Listicle.Generate.Listicle
+    Listicle.Parse.Dictionary
+    Listicle.Parse.Listicle
+    Listicle.Types
+    Listicle.Util
+    Paths_listicle
+
+  build-depends:
+      base
+    , aeson
+    , array
+    , attoparsec
+    , bytestring
+    , containers
+    , random
+    , scotty
+    , transformers
+    , text
+    , yaml
+
+  default-language:           Haskell2010
