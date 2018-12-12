@@ -24,6 +24,7 @@ data Config
     = Config
       { configMaxNumber :: Integer
       }
+    deriving (Eq, Show, Ord, Generic)
 
 data Listicle
     = Listicle [ListiclePart]
