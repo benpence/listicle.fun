@@ -17,9 +17,7 @@ import qualified System.Random                   as Random
 import qualified Web.Scotty                      as Scotty
 
 import Control.Monad.Random (Rand)
---import Data.Monoid ((<>))
 import Data.Text (Text)
---import Text.Read (readMaybe)
 import System.Random (RandomGen)
 
 import Listicle.Types
@@ -49,17 +47,14 @@ generateSeed =
 
 -- | Add routes for routes the browser might visit directly.
 static :: Text -> Scotty.ScottyM ()
-static staticDirectory = do
+static staticDir = do
     -- | Serve static files from a directory
-    serveStaticDirectory "/static/" staticDirectory
+    serveStaticDirectory "/static/" staticDir
 
 serveStaticDirectory :: Text -> Text -> Scotty.ScottyM ()
-serveStaticDirectory staticRouteDirectory staticDirectory = do
-    let routePath = Text.unpack ("^" <> staticRouteDirectory <> "(.*)$")
+serveStaticDirectory staticRouteDir staticDir = do
+    let routePath = Text.unpack ("^" <> staticRouteDir <> "(.*)$")
 
     Scotty.get (Scotty.regex routePath) $ do
         path <- Scotty.param "1"
-        let relativePath = staticDirectory <> path
-        absolutePath <- IO.liftIO (Cabal.getDataFileName (Text.unpack relativePath))
-
-        Scotty.file absolutePath
+        Scotty.file (Text.unpack staticDir <> path)
