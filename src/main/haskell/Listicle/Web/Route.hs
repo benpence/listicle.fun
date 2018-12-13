@@ -33,7 +33,9 @@ withSeed config@(Config { .. }) = do
         let g            = (Random.mkStdGen seed) 
         let maybeStories = Random.evalRandT (Generate.stories config) g
 
-        IO.liftIO (print maybeStories)
+        let html stories = Text.concat $ map (\(Story (l, (Image i))) -> "<p>" <> l <> "</p><img src=\"" <> i <> "\" />") stories
+
+        maybe (pure ()) (Scotty.html . LazyText.fromStrict . html) maybeStories
 
 generateSeed :: Scotty.ScottyM ()
 generateSeed =

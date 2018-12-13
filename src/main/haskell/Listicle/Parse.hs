@@ -1,28 +1,60 @@
+{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 
-module Listicle.Parse.Listicle
-( parse
+module Listicle.Parse
+( dictionary
+, listicle
 ) where
 
+import qualified Data.Aeson                      as Aeson
+import qualified Data.Aeson.Types                as Aeson
 import qualified Data.Attoparsec.Text            as Parser
+import qualified Data.ByteString.Lazy            as ByteString
 import qualified Data.Bifunctor                  as Bifunctor
+import qualified Data.Map                        as Map
 import qualified Data.Set                        as Set
 import qualified Data.Text                       as Text
+import qualified Data.Text.Encoding              as Encoding
 import qualified Listicle.Util                   as Util
 
 import Control.Applicative ((<|>))
 import Data.Attoparsec.Text (Parser)
+import Data.Map (Map)
 import Data.Text (Text)
+import GHC.Generics (Generic)
 
 import Listicle.Types
 
-parse :: Text
-      -> Either Text Listicle
-parse = Bifunctor.first Text.pack . Parser.parseOnly listicle
+newtype ParsedDictionary
+    = ParsedDictionary (Map Text (Map Text Text))
+    deriving (Eq, Show, Ord, Generic)
 
-listicle :: Parser Listicle
-listicle = do
+instance Aeson.FromJSON ParsedDictionary
+
+dictionary :: Text -> Either Text Dictionary
+dictionary =
+  let
+    prettyException = Bifunctor.first Text.pack
+    convertDict     = fmap toDictionary
+  in
+    convertDict . prettyException . Aeson.eitherDecode . ByteString.fromStrict . Encoding.encodeUtf8
+
+toDictionary :: ParsedDictionary
+             -> Dictionary
+toDictionary (ParsedDictionary termMap) =
+  let
+    toTerm (base, attrs) = Term base attrs
+    toTermSet            = Set.fromList . map toTerm . Map.toList
+  in
+    Dictionary (toTermSet termMap)
+
+listicle :: Text
+         -> Either Text Listicle
+listicle = Bifunctor.first Text.pack . Parser.parseOnly fullListicle
+
+fullListicle :: Parser Listicle
+fullListicle = do
     parts <- Parser.many1 listiclePart
     pure (Listicle (map transformIfNumber parts))
 

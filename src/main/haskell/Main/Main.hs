@@ -12,9 +12,9 @@ import qualified Data.Set                        as Set
 import qualified Data.Text                       as Text
 import qualified Data.Traversable                as Traversable
 import qualified Listicle.Generate               as Generate
-import qualified Listicle.Parse.Listicle         as Listicle
-import qualified Listicle.Parse.Dictionary       as Dictionary
+import qualified Listicle.Parse                  as Parse
 import qualified Listicle.Util                   as Util
+import qualified Listicle.Web.Route              as Route
 import qualified Paths_listicle                  as Cabal
 import qualified System.Directory                as Directory
 import qualified Web.Scotty                      as Scotty
@@ -50,31 +50,14 @@ main = do
         configImageStore = imageStore }
 
     g             <- Random.getStdGen
-    let results    = Maybe.fromMaybe [] (Random.evalRandT (Generate.stories config) g)
-
-    mapM_ print results
-
---    store     <- Store.inMemory
+--    let results    = Maybe.fromMaybe [] (Random.evalRandT (Generate.stories config) g)
 --
---    Scotty.scotty 3000 $ do
---        --Scotty.get "/:word" $ do
---        --    beam <- Scotty.param "word"
---        --    Scotty.html $ mconcat ["<h1>Scotty, ", beam, " me up!</h1>"]
---
---        Route.staticRoutes (resourcesDirectory <> "static/")
---    
---        let appConfig = Controller.AppConfig
---              { Controller.boardConfig = Create.BoardConfig
---                  { Create.boardHeight = 5
---                  , Create.boardWidth  = 5
---                  , Create.redWords    = 7
---                  , Create.blueWords   = 7
---                  , Create.assassins   = 1
---                  }
---              , Controller.dictionary = map Text.pack wordList
---              }
---    
---        Route.apiRoutes appConfig store
+--    mapM_ print results
+
+    Scotty.scotty 3000 $ do
+        Route.withSeed config
+        Route.generateSeed
+        Route.static (resourcesDirectory <> "static/")
 
 loadDictionaries :: FilePath
                  -> IO (Map Text Dictionary)
@@ -87,7 +70,7 @@ loadDictionaries dictionaryDir = do
 
         content <- readFile (dictionaryDir <> "/" <> fileName)
 
-        dict <- case Dictionary.parse (Text.pack content) of
+        dict <- case Parse.dictionary (Text.pack content) of
             (Left error) -> fail (Text.unpack error)
             (Right dict) -> pure dict
 
@@ -100,7 +83,7 @@ loadListicles :: FilePath
 loadListicles listiclesPath = do
     lines <- fmap lines (readFile listiclesPath)
 
-    listicles <- Traversable.forM lines (\line -> case Listicle.parse (Text.pack line) of
+    listicles <- Traversable.forM lines (\line -> case Parse.listicle (Text.pack line) of
         (Left error)     -> fail (Text.unpack error)
         (Right listicle) -> pure listicle)
 
@@ -113,7 +96,7 @@ loadImageStore imageDir = do
 
     let
       images =
-        [ Image ("static/" <> (Text.pack fileName))
+        [ Image ("/static/img/" <> (Text.pack fileName))
         | fileName <- files
         , fileName /= "." && fileName /= ".." ]
 
