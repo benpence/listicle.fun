@@ -4,14 +4,15 @@
 module Listicle.Util
 ( randomFromSet
 , capitalizeFirst
-, sequenceRandomGen
 ) where
 
+import qualified Control.Monad.Random            as Random
+import qualified Control.Monad.Trans.Class       as Trans
 import qualified Data.Bifunctor                  as Bifunctor
 import qualified Data.Set                        as Set
-import qualified System.Random                   as Random
 import qualified Data.Text                       as Text
 
+import Control.Monad.Random (RandT)
 import Data.Maybe (Maybe)
 import Data.Set (Set)
 import System.Random (RandomGen)
@@ -19,16 +20,16 @@ import Data.Text (Text)
 
 randomFromSet :: (RandomGen g)
               => Set a
-              -> g
-              -> Maybe (a, g)
-randomFromSet set g = 
+              -> RandT g Maybe a
+randomFromSet set =
   let
-    size              = Set.size set
-    (randomIndex, g') = Random.randomR (0, size - 1) g
+    size = Set.size set
   in
     if size > 0
-    then Just (Set.elemAt randomIndex set, g')
-    else Nothing
+    then do
+      randomIndex <- Random.getRandomR (0, size - 1)
+      pure (Set.elemAt randomIndex set)
+    else Trans.lift Nothing
 
 capitalizeFirst :: Text
                 -> Text
@@ -37,13 +38,3 @@ capitalizeFirst input =
     (firstLetter, rest) = Text.splitAt 1 input
   in
     Text.toTitle firstLetter <> rest
-
-sequenceRandomGen :: RandomGen g
-                  => [g -> (a, g)]
-                  -> g
-                  -> ([a], g)
-sequenceRandomGen fs g =
-  let
-    step (as, g) f = Bifunctor.first (: as) (f g) 
-  in
-    Bifunctor.first reverse (foldl step ([], g) fs)

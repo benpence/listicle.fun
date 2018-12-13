@@ -22,8 +22,23 @@ data Term
 
 data Config
     = Config
-      { configMaxNumber :: Integer
+      { configParams     :: Params
+      , configDicts      :: Map Text Dictionary
+      , configListicles  :: Set Listicle
+      , configImageStore :: ImageStore
       }
+    deriving (Eq, Show, Ord, Generic)
+
+data Params
+    = Params
+      { paramsMinNumber      :: Integer
+      , paramsMaxNumber      :: Integer
+      , paramsStoriesPerPage :: Integer
+      }
+    deriving (Eq, Show, Ord, Generic)
+
+data Story
+    = Story (Text, Image)
     deriving (Eq, Show, Ord, Generic)
 
 data Listicle
@@ -40,5 +55,15 @@ data FillInPath
     = FillInPath
       { fipBase :: Text
       , fipAttr :: Maybe Text
+      }
+    deriving (Eq, Show, Ord, Generic)
+
+data ImageStore
+    = ImageStore (Set Image)
+    deriving (Eq, Show, Ord, Generic)
+
+data Image
+    = Image
+      { imgName :: Text
       }
     deriving (Eq, Show, Ord, Generic)

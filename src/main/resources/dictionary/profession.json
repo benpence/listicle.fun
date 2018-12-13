@@ -10,5 +10,8 @@
     },
     "accountant": {
         "plural": "accountants"
+    },
+    "retail Worker": {
+        "plural": "retail workers"
     }
 }

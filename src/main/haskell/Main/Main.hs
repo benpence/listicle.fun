@@ -4,18 +4,18 @@ module Main
   ( main
   ) where
 
+import qualified Control.Monad.Random            as Random
 import qualified Data.List                       as List
 import qualified Data.Map                        as Map
 import qualified Data.Maybe                      as Maybe
 import qualified Data.Set                        as Set
 import qualified Data.Text                       as Text
 import qualified Data.Traversable                as Traversable
-import qualified Listicle.Generate.Listicle      as Listicle
+import qualified Listicle.Generate               as Generate
 import qualified Listicle.Parse.Listicle         as Listicle
 import qualified Listicle.Parse.Dictionary       as Dictionary
 import qualified Listicle.Util                   as Util
 import qualified Paths_listicle                  as Cabal
-import qualified System.Random                   as Random
 import qualified System.Directory                as Directory
 import qualified Web.Scotty                      as Scotty
 
@@ -29,28 +29,30 @@ import Listicle.Types
 resourcesDirectory :: Text
 resourcesDirectory = "src/main/resources/"
 
+defaultParams :: Params
+defaultParams = Params { paramsMinNumber = 3, paramsMaxNumber = 30, paramsStoriesPerPage = 10 }
+
 main :: IO ()
 main = do
     dictionaryDir <- Cabal.getDataFileName (Text.unpack resourcesDirectory <> "dictionary")
-    dictionaries  <- loadDictionaries dictionaryDir
+    dicts         <- loadDictionaries dictionaryDir
 
     listiclesPath <- Cabal.getDataFileName (Text.unpack resourcesDirectory <> "listicles.list")
     listicles     <- loadListicles listiclesPath
 
+    imagesDir     <- Cabal.getDataFileName (Text.unpack resourcesDirectory <> "static/img")
+    imageStore    <- loadImageStore imagesDir
+
+    let config     = Config {
+        configParams     = defaultParams,
+        configDicts      = dicts,
+        configListicles  = listicles,
+        configImageStore = imageStore }
+
     g             <- Random.getStdGen
+    let results    = Maybe.fromMaybe [] (Random.evalRandT (Generate.stories config) g)
 
-    let config     = Config { configMaxNumber = 30 }
-    let generate l g = Maybe.fromMaybe ([], g) (Listicle.generate config dictionaries l g)
-    let (results, g') = Util.sequenceRandomGen (map generate (Set.toList listicles)) g
-
-    putStrLn (show (map Text.concat results))
-
--- generate :: (RandomGen g)
---          => Config
---          -> Map Text Dictionary
---          -> Listicle
---          -> g
---          -> Maybe ([Text], g)
+    mapM_ print results
 
 --    store     <- Store.inMemory
 --
@@ -103,3 +105,16 @@ loadListicles listiclesPath = do
         (Right listicle) -> pure listicle)
 
     pure (Set.fromList listicles)
+
+loadImageStore :: FilePath
+               -> IO ImageStore
+loadImageStore imageDir = do
+    files <- Directory.getDirectoryContents imageDir
+
+    let
+      images =
+        [ Image ("static/" <> (Text.pack fileName))
+        | fileName <- files
+        , fileName /= "." && fileName /= ".." ]
+
+    pure (ImageStore (Set.fromList images))

@@ -19,6 +19,14 @@
         "comparative": "colder",
         "superlative": "coldest"
     },
+    "in love": {
+        "comparative": "more in love",
+        "superlative": "most in love"
+    },
+    "pregnant": {
+        "comparative": "more pregnant",
+        "superlative": "most pregnant"
+    },
     "hot": {
         "comparative": "hotter",
         "superlative": "hottest"

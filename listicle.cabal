@@ -10,6 +10,7 @@ cabal-version:       >= 1.10
 data-files:
   src/main/resources/listicles.list
   src/main/resources/dictionary/*.json
+  src/main/resources/static/img/*.jpeg
 
 executable listicle-main
   hs-source-dirs:             src/main/haskell/Main
@@ -20,6 +21,7 @@ executable listicle-main
     , containers
     , directory
     , listicle
+    , MonadRandom
     , random
     , scotty
     , text
@@ -29,11 +31,12 @@ executable listicle-main
 library
   hs-source-dirs:             src/main/haskell
   exposed-modules:
-    Listicle.Generate.Listicle
+    Listicle.Generate
     Listicle.Parse.Dictionary
     Listicle.Parse.Listicle
     Listicle.Types
     Listicle.Util
+    Listicle.Web.Route
     Paths_listicle
 
   build-depends:
@@ -43,6 +46,7 @@ library
     , attoparsec
     , bytestring
     , containers
+    , MonadRandom
     , random
     , scotty
     , transformers
