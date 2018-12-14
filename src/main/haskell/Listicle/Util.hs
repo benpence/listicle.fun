@@ -2,34 +2,44 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Listicle.Util
-( randomFromSet
+( array
+, randomFromArray
 , capitalizeFirst
 ) where
 
 import qualified Control.Monad.Random            as Random
 import qualified Control.Monad.Trans.Class       as Trans
+import qualified Data.Array                      as Array
 import qualified Data.Bifunctor                  as Bifunctor
-import qualified Data.Set                        as Set
 import qualified Data.Text                       as Text
 
 import Control.Monad.Random (RandT)
+import Data.Array ((!))
+import Data.Array (Array)
 import Data.Maybe (Maybe)
-import Data.Set (Set)
 import System.Random (RandomGen)
 import Data.Text (Text)
 
-randomFromSet :: (RandomGen g)
-              => Set a
+-- TODO: Handle case of empty array w/ Maybe
+randomFromArray :: (RandomGen g)
+              => Array Int a
               -> RandT g Maybe a
-randomFromSet set =
+randomFromArray arr =
   let
-    size = Set.size set
+    bounds = Array.bounds arr
+    size   =
+        if snd bounds < fst bounds
+        then 0
+        else snd bounds + 1
   in
     if size > 0
     then do
       randomIndex <- Random.getRandomR (0, size - 1)
-      pure (Set.elemAt randomIndex set)
+      pure (arr ! randomIndex)
     else Trans.lift Nothing
+
+array :: [a] -> Array Int a
+array l = Array.listArray (0, length l - 1) l
 
 capitalizeFirst :: Text
                 -> Text

@@ -13,10 +13,10 @@ import qualified Data.Attoparsec.Text            as Parser
 import qualified Data.ByteString.Lazy            as ByteString
 import qualified Data.Bifunctor                  as Bifunctor
 import qualified Data.Map                        as Map
-import qualified Data.Set                        as Set
 import qualified Data.Text                       as Text
 import qualified Data.Text.Encoding              as Encoding
 import qualified Listicle.Util                   as Util
+import qualified Text.Mustache                   as Mustache
 
 import Control.Applicative ((<|>))
 import Data.Attoparsec.Text (Parser)
@@ -45,9 +45,9 @@ toDictionary :: ParsedDictionary
 toDictionary (ParsedDictionary termMap) =
   let
     toTerm (base, attrs) = Term base attrs
-    toTermSet            = Set.fromList . map toTerm . Map.toList
+    toTermArray          = Util.array . map toTerm . Map.toList
   in
-    Dictionary (toTermSet termMap)
+    Dictionary (toTermArray termMap)
 
 listicle :: Text
          -> Either Text Listicle
@@ -65,7 +65,7 @@ transformIfNumber lp
   | otherwise          = lp
 
 numberFillin :: ListiclePart
-numberFillin = FillIn (Set.singleton (FillInPath "number" Nothing))
+numberFillin = FillIn (Util.array [FillInPath "number" Nothing])
 
 listiclePart :: Parser ListiclePart
 listiclePart = fillIn <|> normalText
@@ -81,7 +81,7 @@ fillIn =
     Parser.char '['
     fillInPaths <- Parser.sepBy fillInPath sep
     Parser.char ']'
-    pure (FillIn (Set.fromList fillInPaths))
+    pure (FillIn (Util.array fillInPaths))
 
 fillInPath :: Parser FillInPath
 fillInPath =

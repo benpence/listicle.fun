@@ -12,28 +12,37 @@ import qualified Control.Monad.Random            as Random
 import qualified Data.Text                       as Text
 import qualified Data.Text.Lazy                  as LazyText
 import qualified Listicle.Generate               as Generate
+import qualified Listicle.Util                   as Util 
+import qualified Listicle.Web.Template           as Template
 import qualified Paths_listicle                  as Cabal
 import qualified System.Random                   as Random
 import qualified Web.Scotty                      as Scotty
 
 import Control.Monad.Random (Rand)
+import Data.Array (Array)
 import Data.Text (Text)
+import Listicle.Web.Template (Template)
 import System.Random (RandomGen)
 
 import Listicle.Types
 
 withSeed :: Config
+         -> Array Int Template
          -> Scotty.ScottyM ()
-withSeed config@(Config { .. }) = do
+withSeed config@(Config { .. }) templates = do
     Scotty.get (Scotty.regex "^/([0-9]{1,9})$") $ do
         seed <- fmap (read . Text.unpack) (Scotty.param "1")
         
-        let g            = (Random.mkStdGen seed) 
-        let maybeStories = Random.evalRandT (Generate.stories config) g
+        let
+            generateHtml = do
+                stories  <- Generate.stories config
+                template <- Util.randomFromArray templates
 
-        let html stories = Text.concat $ map (\(Story (l, (Image i))) -> "<p>" <> l <> "</p><img src=\"" <> i <> "\" />") stories
+                pure (Template.render template stories)
 
-        maybe (pure ()) (Scotty.html . LazyText.fromStrict . html) maybeStories
+        case Random.evalRandT generateHtml (Random.mkStdGen seed) of
+            (Just html) -> Scotty.html (LazyText.fromStrict html)
+            Nothing     -> Scotty.html "Error"
 
 generateSeed :: Scotty.ScottyM ()
 generateSeed =

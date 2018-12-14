@@ -21,7 +21,6 @@ import Control.Monad.Random (Rand)
 import Control.Monad.Random (RandT)
 import Data.Map (Map)
 import Data.Maybe (Maybe(..))
-import Data.Set (Set)
 import Data.Text (Text)
 import System.Random (RandomGen)
 
@@ -33,10 +32,10 @@ stories :: (RandomGen g)
 stories config@(Config { .. }) =
   let
     randomListicle :: (RandomGen g) => RandT g Maybe Text
-    randomListicle  = listicle config =<< Util.randomFromSet configListicles 
+    randomListicle  = listicle config =<< Util.randomFromArray configListicles 
 
     story          :: (RandomGen g) => RandT g Maybe Story
-    story           = Applicative.liftA2 (\a b -> Story (a, b)) randomListicle (image configImageStore)
+    story           = Applicative.liftA2 (\a b -> (Story (a, b))) randomListicle (image configImageStore)
 
     (Params { .. }) = configParams
   in
@@ -45,7 +44,7 @@ stories config@(Config { .. }) =
 image :: (RandomGen g)
       => ImageStore
       -> RandT g Maybe Image
-image (ImageStore images) = Util.randomFromSet images
+image (ImageStore images) = Util.randomFromArray images
 
 listicle :: (RandomGen g)
          => Config
@@ -61,7 +60,7 @@ generatePart :: (RandomGen g)
 generatePart _               (NormalText t)   = Trans.lift (Just t)
 generatePart (Config { .. }) Number           = number configParams
 generatePart (Config { .. }) (FillIn fillIns) = do
-    (FillInPath { .. }) <- Util.randomFromSet fillIns
+    (FillInPath { .. }) <- Util.randomFromArray fillIns
     dictionary          <- Trans.lift (Map.lookup fipBase configDicts)
     fillIn dictionary fipAttr
 
@@ -77,7 +76,7 @@ fillIn :: (RandomGen g)
        -> Maybe Text
        -> RandT g Maybe Text
 fillIn (Dictionary terms) attr = do
-    (Term { .. }) <- Util.randomFromSet terms
+    (Term { .. }) <- Util.randomFromArray terms
 
     let generatedAttr = (\attr -> Map.lookup attr termAttrs) =<< attr
     let generatedBase = Just termBase

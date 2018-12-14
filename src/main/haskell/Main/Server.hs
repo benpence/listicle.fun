@@ -10,8 +10,10 @@ import qualified Listicle.Web.Route              as Route
 import qualified Paths_listicle                  as Cabal
 import qualified Web.Scotty                      as Scotty
 
+import Data.Array (Array)
 import Data.Monoid ((<>))
 import Data.Text (Text)
+import Listicle.Web.Template (Template)
 
 import Listicle.Types
 
@@ -19,15 +21,17 @@ main :: IO ()
 main = do
     resourcesDir <- Cabal.getDataFileName Load.resourcesBaseDir
     config       <- Load.config resourcesDir
+    templates    <- Load.templates (resourcesDir <> "template")
 
-    startWebServer config resourcesDir 3000
+    startWebServer config templates resourcesDir 3000
 
 startWebServer :: Config
+               -> Array Int Template
                -> String
                -> Int
                -> IO ()
-startWebServer config resourcesDir port = Scotty.scotty port $ do
-    Route.withSeed config
+startWebServer config templates resourcesDir port = Scotty.scotty port $ do
+    Route.withSeed config templates
     Route.generateSeed
     Route.static (Text.pack resourcesDir <> "static/")
 

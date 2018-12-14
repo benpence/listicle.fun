@@ -10,6 +10,7 @@ cabal-version:       >= 1.10
 data-files:
   src/main/resources/dictionary/*.json
   src/main/resources/listicles.list
+  src/main/resources/template/*.tpl
   src/main/resources/static/img/*.jpeg
 
 executable listicle-server
@@ -18,6 +19,7 @@ executable listicle-server
 
   build-depends:
       base
+    , array
     , listicle
     , scotty
     , text
@@ -45,6 +47,7 @@ library
     Listicle.Load
     Listicle.Util
     Listicle.Web.Route
+    Listicle.Web.Template
     Paths_listicle
 
   build-depends:
@@ -56,6 +59,7 @@ library
     , containers
     , directory
     , MonadRandom
+    , mustache
     , random
     , scotty
     , transformers
