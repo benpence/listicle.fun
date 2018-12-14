@@ -13,5 +13,32 @@
     },
     "retail Worker": {
         "plural": "retail workers"
+    },
+    "candlestick maker": {
+        "plural": "candlestick makers"
+    },
+    "patrolman": {
+        "plural": "patrolmen"
+    },
+    "pervert": {
+        "plural": "perverts"
+    },
+    "poop slinger": {
+        "plural": "poop slingers"
+    },
+    "jackass": {
+        "plural": "jackasses"
+    },
+    "philosopher": {
+        "plural": "philosophers"
+    },
+    "grouch": {
+        "plural": "grouches"
+    },
+    "dirtbag": {
+        "plural": "dirtbags"
+    },
+    "bull-headed lover": {
+        "plural": "bull-headed lovers"
     }
 }

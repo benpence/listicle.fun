@@ -27,8 +27,428 @@
         "comparative": "more pregnant",
         "superlative": "most pregnant"
     },
+    "compassionate": {
+        "comparative": "more compassionate",
+        "superlative": "most compassionate"
+    },
     "hot": {
         "comparative": "hotter",
         "superlative": "hottest"
+    },
+    "contemporary": {
+        "comparative": "more contemporary",
+        "superlative": "most contemporary"
+    },
+    "content": {
+        "comparative": "more content",
+        "superlative": "most content"
+    },
+    "craft-brewed ": {
+        "comparative": "more craft-brewed ",
+        "superlative": "most craft-brewed "
+    },
+    "crappy": {
+        "comparative": "crappier",
+        "superlative": "most crappiest"
+    },
+    "moral": {
+        "comparative": "more moral",
+        "superlative": "most moral"
+    },
+    "crate-trained": {
+        "comparative": "more crate-trained",
+        "superlative": "most crate-trained"
+    },
+    "crazy": {
+        "comparative": "crazier",
+        "superlative": "craziest"
+    },
+    "dead": {
+        "comparative": "deader",
+        "superlative": "deadest"
+    },
+    "hairless": {
+        "comparative": "more hairless",
+        "superlative": "most hairless"
+    },
+    "sadistic": {
+        "comparative": "more sadistic",
+        "superlative": "most sadistic"
+    },
+    "metal": {
+        "comparative": "more metal",
+        "superlative": "most metal"
+    },
+    "wild": {
+        "comparative": "wilder",
+        "superlative": "wildest"
+    },
+    "domesticated": {
+        "comparative": "more domesticated",
+        "superlative": "most domesticated"
+    },
+    "abnormal": {
+        "comparative": "more abnormal",
+        "superlative": "most abnormal"
+    },
+    "medicated": {
+        "comparative": "more medicated",
+        "superlative": "most medicated"
+    },
+    "cocky": {
+        "comparative": "cockier",
+        "superlative": "cockiest"
+    },
+    "massive": {
+        "comparative": "more massive",
+        "superlative": "most massive"
+    },
+    "disrespectful": {
+        "comparative": "more disrespectful",
+        "superlative": "most disrespectful"
+    },
+    "impressive": {
+        "comparative": "more impressive",
+        "superlative": "most impressive"
+    },
+    "out of control": {
+        "comparative": "more out of control",
+        "superlative": "most out of control"
+    },
+    "internet worthy": {
+        "comparative": "more internet worthy",
+        "superlative": "most internet worthy"
+    },
+    "hilarious": {
+        "comparative": "more hilarious",
+        "superlative": "most hilarious"
+    },
+    "sexy": {
+        "comparative": "sexier",
+        "superlative": "sexiest"
+    },
+    "tactful": {
+        "comparative": "more tactful",
+        "superlative": "most tactful"
+    },
+    "bearded": {
+        "comparative": "more bearded",
+        "superlative": "most bearded"
+    },
+    "duck-like": {
+        "comparative": "more duck-like",
+        "superlative": "most duck-like"
+    },
+    "violent": {
+        "comparative": "more violent",
+        "superlative": "most violent"
+    },
+    "slimy": {
+        "comparative": "slimier",
+        "superlative": "slimiest"
+    },
+    "creepy": {
+        "comparative": "creepier",
+        "superlative": "creepiest"
+    },
+    "insane": {
+        "comparative": "insaner",
+        "superlative": "insanest"
+    },
+    "embarrassing": {
+        "comparative": "more embarrassing",
+        "superlative": "most embarrassing"
+    },
+    "self-centered": {
+        "comparative": "more self-centered",
+        "superlative": "most self-centered"
+    },
+    "naked": {
+        "comparative": "more naked",
+        "superlative": "most naked"
+    },
+    "angry": {
+        "comparative": "angrier",
+        "superlative": "angriest"
+    },
+    "shaky": {
+        "comparative": "shakier",
+        "superlative": "shakiest"
+    },
+    "deep": {
+        "comparative": "deeper",
+        "superlative": "deepest"
+    },
+    "sick": {
+        "comparative": "sicker",
+        "superlative": "sickest"
+    },
+    "zippy": {
+        "comparative": "zippier",
+        "superlative": "zippiest"
+    },
+    "sticky": {
+        "comparative": "stickier",
+        "superlative": "stickiest"
+    },
+    "fluffy": {
+        "comparative": "fluffier",
+        "superlative": "fluffiest"
+    },
+    "frozen": {
+        "comparative": "more frozen",
+        "superlative": "most frozen"
+    },
+    "unholy": {
+        "comparative": "unholier",
+        "superlative": "unholiest"
+    },
+    "painful": {
+        "comparative": "more painful",
+        "superlative": "most painful"
+    },
+    "honest": {
+        "comparative": "more honest",
+        "superlative": "most honest"
+    },
+    "filthy": {
+        "comparative": "filthier",
+        "superlative": "filthiest"
+    },
+    "bonkers": {
+        "comparative": "more bonkers",
+        "superlative": "most bonkers"
+    },
+    "harsh": {
+        "comparative": "harsher",
+        "superlative": "harshest"
+    },
+    "frisky": {
+        "comparative": "friskier",
+        "superlative": "friskiest"
+    },
+    "greedy": {
+        "comparative": "greedier",
+        "superlative": "greediest"
+    },
+    "hideous": {
+        "comparative": "more hideous",
+        "superlative": "most hideous"
+    },
+    "ungodly": {
+        "comparative": "ungodlier",
+        "superlative": "ungodliest"
+    },
+    "abusive": {
+        "comparative": "more abusive",
+        "superlative": "most abusive"
+    },
+    "drunken": {
+        "comparative": "more drunken",
+        "superlative": "most drunken"
+    },
+    "hateful": {
+        "comparative": "more hateful",
+        "superlative": "most hateful"
+    },
+    "idiotic": {
+        "comparative": "more idiotic",
+        "superlative": "most idiotic"
+    },
+    "twisted": {
+        "comparative": "more twisted",
+        "superlative": "most twisted"
+    },
+    "useless": {
+        "comparative": "more useless",
+        "superlative": "most useless"
+    },
+    "magical": {
+        "comparative": "more magical",
+        "superlative": "most magical"
+    },
+    "indecent": {
+        "comparative": "more indecent",
+        "superlative": "most indecent"
+    },
+    "godawful": {
+        "comparative": "more godawful",
+        "superlative": "most godawful"
+    },
+    "arrogant": {
+        "comparative": "more arrogant",
+        "superlative": "most arrogant"
+    },
+    "confused": {
+        "comparative": "more confused",
+        "superlative": "most confused"
+    },
+    "flirty": {
+        "comparative": "flirtier",
+        "superlative": "flirtiest"
+    },
+    "high-end": {
+        "comparative": "more high-end",
+        "superlative": "most high-end"
+    },
+    "insecure": {
+        "comparative": "more insecure",
+        "superlative": "most insecure"
+    },
+    "maniacal": {
+        "comparative": "more maniacal",
+        "superlative": "most maniacal"
+    },
+    "sickening": {
+        "comparative": "more sickening",
+        "superlative": "most sickening"
+    },
+    "slippery": {
+        "comparative": "more slippery",
+        "superlative": "most slippery"
+    },
+    "stubborn": {
+        "comparative": "more stubborn",
+        "superlative": "most stubborn"
+    },
+    "trippy": {
+        "comparative": "trippier",
+        "superlative": "trippiest"
+    },
+    "vengeful": {
+        "comparative": "more vengeful",
+        "superlative": "most vengeful"
+    },
+    "sinister": {
+        "comparative": "more sinister",
+        "superlative": "most sinister"
+    },
+    "cowardly": {
+        "comparative": "more cowardly",
+        "superlative": "most cowardly"
+    },
+    "haunted": {
+        "comparative": "more haunted",
+        "superlative": "most haunted"
+    },
+    "startled": {
+        "comparative": "more startled",
+        "superlative": "most startled"
+    },
+    "alcoholic": {
+        "comparative": "more alcoholic",
+        "superlative": "most alcoholic"
+    },
+    "demanding": {
+        "comparative": "more demanding",
+        "superlative": "most demanding"
+    },
+    "offensive": {
+        "comparative": "more offensive",
+        "superlative": "most offensive"
+    },
+    "startling": {
+        "comparative": "more startling",
+        "superlative": "most startling"
+    },
+    "disgusting": {
+        "comparative": "more disgusting",
+        "superlative": "most disgusting"
+    },
+    "slap happy": {
+        "comparative": "slap happier",
+        "superlative": "slap happiest"
+    },
+    "disturbing": {
+        "comparative": "more disturbing",
+        "superlative": "most disturbing"
+    },
+    "adulterous": {
+        "comparative": "more adulterous",
+        "superlative": "most adulterous"
+    },
+    "rebellious": {
+        "comparative": "more rebellious",
+        "superlative": "most rebellious"
+    },
+    "impertinent": {
+        "comparative": "more impertinent",
+        "superlative": "most impertinent"
+    },
+    "bull-headed": {
+        "comparative": "more bull-headed",
+        "superlative": "most bull-headed"
+    },
+    "hyperactive": {
+        "comparative": "more hyperactive",
+        "superlative": "most hyperactive"
+    },
+    "infuriating": {
+        "comparative": "more infuriating",
+        "superlative": "most infuriating"
+    },
+    "pea-brained": {
+        "comparative": "more pea-brained",
+        "superlative": "most pea-brained"
+    },
+    "territorial": {
+        "comparative": "more territorial",
+        "superlative": "most territorial"
+    },
+    "underhanded": {
+        "comparative": "more underhanded",
+        "superlative": "most underhanded"
+    },
+    "zombie-like": {
+        "comparative": "more zombie-like",
+        "superlative": "most zombie-like"
+    },
+    "mischievous": {
+        "comparative": "more mischievous",
+        "superlative": "most mischievous"
+    },
+    "free-loading": {
+        "comparative": "more free-loading",
+        "superlative": "most free-loading"
+    },
+    "house-broken": {
+        "comparative": "more house-broken",
+        "superlative": "most house-broken"
+    },
+    "cruel-hearted": {
+        "comparative": "more cruel-hearted",
+        "superlative": "most cruel-hearted"
+    },
+    "misunderstood": {
+        "comparative": "more misunderstood",
+        "superlative": "most misunderstood"
+    },
+    "narrow-minded": {
+        "comparative": "more narrow-minded",
+        "superlative": "most narrow-minded"
+    },
+    "self-absorbed": {
+        "comparative": "more self-absorbed",
+        "superlative": "most self-absorbed"
+    },
+    "bat-shit-crazy": {
+        "comparative": "bat-shit-crazier",
+        "superlative": "bat-shit-craziest"
+    },
+    "fiercely-loyal": {
+        "comparative": "more fiercely-loyal",
+        "superlative": "most fiercely-loyal"
+    },
+    "out-of-control": {
+        "comparative": "more out-of-control",
+        "superlative": "most out-of-control"
+    },
+    "fear-inspiring": {
+        "comparative": "more fear-inspiring",
+        "superlative": "most fear-inspiring"
+    },
+    "mentally impaired": {
+        "comparative": "more mentally impaired",
+        "superlative": "most mentally impaired"
     }
 }
