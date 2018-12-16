@@ -20,10 +20,17 @@ data Template
     = Template Mustache.Template
     deriving (Show)
 
-newtype TemplateStories = TemplateStories [TemplateStory]
+data TemplatePage
+    = TemplatePage
+      { tpMainStories :: [TemplateStory]
+      , tpSideStories :: [TemplateStory]
+      }
 
-instance Mustache.ToMustache TemplateStories where
-    toMustache (TemplateStories stories) = Mustache.object [ "stories" ~> stories ] 
+instance Mustache.ToMustache TemplatePage where
+    toMustache (TemplatePage { .. }) = Mustache.object
+      [ "mainStories" ~> tpMainStories
+      , "sideStories" ~> tpSideStories
+      ] 
 
 newtype TemplateStory = TemplateStory Story
 
@@ -39,6 +46,10 @@ parse = Bifunctor.bimap (Text.pack . show) Template . Mustache.compileTemplate "
 
 render :: Template
        -> [Story]
+       -> [Story]
        -> Text
-render (Template template) stories =
-    Mustache.substitute template (TemplateStories (map TemplateStory stories))
+render (Template template) mainStories sideStories =
+    Mustache.substitute template $ TemplatePage {
+        tpMainStories = map TemplateStory mainStories,
+        tpSideStories = map TemplateStory sideStories }
+ 

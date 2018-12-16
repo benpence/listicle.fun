@@ -11,6 +11,7 @@ data-files:
   src/main/resources/dictionary/*.json
   src/main/resources/listicles.list
   src/main/resources/template/*.tpl
+  src/main/resources/static/css/*.css
   src/main/resources/static/img/*.jpeg
 
 executable listicle-server

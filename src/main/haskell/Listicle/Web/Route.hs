@@ -35,10 +35,11 @@ withSeed config@(Config { .. }) templates = do
         
         let
             generateHtml = do
-                stories  <- Generate.stories config
-                template <- Util.randomFromArray templates
+                mainStories  <- Generate.stories config
+                sideStories  <- Generate.stories config
+                template     <- Util.randomFromArray templates
 
-                pure (Template.render template stories)
+                pure (Template.render template mainStories sideStories)
 
         case Random.evalRandT generateHtml (Random.mkStdGen seed) of
             (Just html) -> Scotty.html (LazyText.fromStrict html)

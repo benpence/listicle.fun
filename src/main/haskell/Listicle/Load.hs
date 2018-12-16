@@ -29,7 +29,7 @@ import Listicle.Web.Template (Template)
 import Listicle.Types
 
 defaultParams :: Params
-defaultParams = Params { paramsMinNumber = 3, paramsMaxNumber = 30, paramsStoriesPerPage = 10 }
+defaultParams = Params { paramsMinNumber = 3, paramsMaxNumber = 30, paramsStoriesPerPage = 40 }
 
 resourcesBaseDir :: FilePath
 resourcesBaseDir = "src/main/resources/"
