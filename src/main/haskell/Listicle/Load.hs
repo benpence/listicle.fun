@@ -6,7 +6,7 @@ module Listicle.Load
 , defaultParams
 , dicts
 , imageStore
-, listicles
+, headlines
 , resourcesBaseDir
 , templates
 ) where
@@ -38,13 +38,13 @@ config :: String
        -> IO Config
 config resourcesDir = do
     dicts         <- dicts (resourcesDir <> "dictionary")
-    listicles     <- listicles (resourcesDir <> "listicles.list")
+    headlines     <- headlines (resourcesDir <> "headline.list")
     imageStore    <- imageStore (resourcesDir <> "static/img")
 
     pure $ Config {
         configParams     = defaultParams,
         configDicts      = dicts,
-        configListicles  = listicles,
+        configHeadlines  = headlines,
         configImageStore = imageStore }
 
 dicts :: FilePath
@@ -79,16 +79,16 @@ imageStore imageDir = do
 
     pure (ImageStore (Util.array images))
 
-listicles :: FilePath
-          -> IO (Array Int Listicle)
-listicles listiclesPath = do
-    lines <- fmap lines (readFile listiclesPath)
+headlines :: FilePath
+          -> IO (Array Int Headline)
+headlines headlinesPath = do
+    lines <- fmap lines (readFile headlinesPath)
 
-    listicleList <- Traversable.forM lines (\line -> case Parse.listicle (Text.pack line) of
+    headlineList <- Traversable.forM lines (\line -> case Parse.headline (Text.pack line) of
         (Left error)     -> fail (Text.unpack error)
-        (Right listicle) -> pure listicle)
+        (Right headline) -> pure headline)
 
-    pure (Util.array listicleList)
+    pure (Util.array headlineList)
 
 templates :: FilePath
          -> IO (Array Int Template)

@@ -3,7 +3,7 @@
 module Listicle.Generate
 ( stories
 , image
-, listicle
+, headline
 ) where
 
 import qualified Control.Applicative             as Applicative
@@ -31,11 +31,11 @@ stories :: (RandomGen g)
         -> RandT g Maybe [Story]
 stories config@(Config { .. }) =
   let
-    randomListicle :: (RandomGen g) => RandT g Maybe Text
-    randomListicle  = listicle config =<< Util.randomFromArray configListicles 
+    randomHeadline :: (RandomGen g) => RandT g Maybe Text
+    randomHeadline  = headline config =<< Util.randomFromArray configHeadlines
 
     story          :: (RandomGen g) => RandT g Maybe Story
-    story           = Applicative.liftA2 (\a b -> (Story (a, b))) randomListicle (image configImageStore)
+    story           = Applicative.liftA2 (\a b -> (Story (a, b))) randomHeadline (image configImageStore)
 
     (Params { .. }) = configParams
   in
@@ -46,16 +46,16 @@ image :: (RandomGen g)
       -> RandT g Maybe Image
 image (ImageStore images) = Util.randomFromArray images
 
-listicle :: (RandomGen g)
+headline :: (RandomGen g)
          => Config
-         -> Listicle
+         -> Headline
          -> RandT g Maybe Text
-listicle config@(Config { .. }) (Listicle parts) =
+headline config@(Config { .. }) (Headline parts) =
     fmap (Util.capitalizeFirst . Text.concat) (mapM (generatePart config) parts)
 
 generatePart :: (RandomGen g)
              => Config
-             -> ListiclePart
+             -> HeadlinePart
              -> RandT g Maybe Text
 generatePart _               (NormalText t)   = Trans.lift (Just t)
 generatePart (Config { .. }) Number           = number configParams

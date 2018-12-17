@@ -9,7 +9,7 @@ cabal-version:       >= 1.10
 
 data-files:
   src/main/resources/dictionary/*.json
-  src/main/resources/listicles.list
+  src/main/resources/headline.list
   src/main/resources/template/*.tpl
   src/main/resources/static/css/*.css
   src/main/resources/static/img/*.jpeg

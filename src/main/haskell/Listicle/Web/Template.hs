@@ -35,8 +35,8 @@ instance Mustache.ToMustache TemplatePage where
 newtype TemplateStory = TemplateStory Story
 
 instance Mustache.ToMustache TemplateStory where
-    toMustache (TemplateStory (Story (listicle, (Image { .. })))) = Mustache.object
-      [ "title" ~> listicle
+    toMustache (TemplateStory (Story (headline, (Image { .. })))) = Mustache.object
+      [ "title" ~> headline
       , "image" ~> imgPath
       ] 
 

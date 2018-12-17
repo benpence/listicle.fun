@@ -15,7 +15,7 @@ data Config
     = Config
       { configParams     :: Params
       , configDicts      :: Map Text Dictionary
-      , configListicles  :: Array Int Listicle
+      , configHeadlines  :: Array Int Headline
       , configImageStore :: ImageStore
       }
     deriving (Eq, Show, Ord, Generic)
@@ -45,11 +45,11 @@ data Story
     = Story (Text, Image)
     deriving (Eq, Show, Ord, Generic)
 
-data Listicle
-    = Listicle [ListiclePart]
+data Headline
+    = Headline [HeadlinePart]
     deriving (Eq, Show, Ord, Generic)
 
-data ListiclePart
+data HeadlinePart 
     = NormalText Text
     | Number
     | FillIn (Array Int FillInPath)

@@ -4,7 +4,7 @@
 
 module Listicle.Parse
 ( dictionary
-, listicle
+, headline
 ) where
 
 import qualified Data.Aeson                      as Aeson
@@ -49,31 +49,31 @@ toDictionary (ParsedDictionary termMap) =
   in
     Dictionary (toTermArray termMap)
 
-listicle :: Text
-         -> Either Text Listicle
-listicle = Bifunctor.first Text.pack . Parser.parseOnly fullListicle
+headline :: Text
+         -> Either Text Headline
+headline = Bifunctor.first Text.pack . Parser.parseOnly fullHeadline
 
-fullListicle :: Parser Listicle
-fullListicle = do
-    parts <- Parser.many1 listiclePart
-    pure (Listicle (map transformIfNumber parts))
+fullHeadline :: Parser Headline
+fullHeadline = do
+    parts <- Parser.many1 headlinePart
+    pure (Headline (map transformIfNumber parts))
 
-transformIfNumber :: ListiclePart
-                  -> ListiclePart
+transformIfNumber :: HeadlinePart
+                  -> HeadlinePart
 transformIfNumber lp
   | lp == numberFillin = Number
   | otherwise          = lp
 
-numberFillin :: ListiclePart
+numberFillin :: HeadlinePart
 numberFillin = FillIn (Util.array [FillInPath "number" Nothing])
 
-listiclePart :: Parser ListiclePart
-listiclePart = fillIn <|> normalText
+headlinePart :: Parser HeadlinePart
+headlinePart = fillIn <|> normalText
 
-normalText :: Parser ListiclePart
+normalText :: Parser HeadlinePart
 normalText = fmap NormalText (Parser.takeWhile1 ('[' /=))
 
-fillIn :: Parser ListiclePart
+fillIn :: Parser HeadlinePart
 fillIn =
   let
     sep = Parser.skipSpace <* Parser.char '/' <* Parser.skipSpace
