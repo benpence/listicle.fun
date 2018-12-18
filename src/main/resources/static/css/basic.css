@@ -2,9 +2,25 @@
   border-top: 8px solid #000;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+}
+
+a.menu {
+  font-size: 20px;
+  padding: 10px;
+}
+
 #content {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
 }
 
 #stories {
@@ -27,11 +43,36 @@
   margin-top: 0px;
 }
 
-.story-title {
+.story-text {
+  padding: 15px;
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+}
+
+.story-text p {
+  margin: 0px;
+}
+
+.story-headline {
   font-size: 26px;
   text-align: justify;
   font-family: 'Yanone Kaffeesatz',Helvetica,Arial,sans-serif;
-  padding: 15px;
+}
+
+.story-summary {
+}
+
+.story-author {
+}
+
+.story-author-avatar {
+  font-family: Emoji;
+  font-size: 20px;
+}
+
+.story-author-name {
+  font-weight: bold;
 }
 
 .story-image {
@@ -48,8 +89,10 @@
 .sidebar-story {
   display: flex;
   flex-flow: column;
+  align-items: center;
   width: 333px;
   padding: 5px 0px 5px 0px;
+  cursor: pointer;
 }
 
 .sidebar-story:last-child {
@@ -60,10 +103,14 @@
   padding: 5px 0px 0px 0px;
 }
 
-
-.sidebar-title {
+.sidebar-headline {
   font-size: 18px;
   text-align: justify;
   font-family: 'Yanone Kaffeesatz',Helvetica,Arial,sans-serif;
   padding: 15px;
 }
+
+@font-face {
+  font-family: Emoji;
+  src: url('/static/font/emojis.ttf');
+} 

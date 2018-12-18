@@ -9,9 +9,10 @@ cabal-version:       >= 1.10
 
 data-files:
   src/main/resources/dictionary/*.json
-  src/main/resources/headline.list
+  src/main/resources/*.list
   src/main/resources/template/*.tpl
   src/main/resources/static/css/*.css
+  src/main/resources/static/font/*.ttf
   src/main/resources/static/img/*.jpeg
 
 executable listicle-server
@@ -24,6 +25,7 @@ executable listicle-server
     , listicle
     , scotty
     , text
+    , transformers
 
   default-language:           Haskell2010
 
@@ -35,20 +37,26 @@ executable listicle-command-line
       base
     , listicle
     , MonadRandom
+    , mmorph
     , text
+    , transformers
 
   default-language:           Haskell2010
 
 library
   hs-source-dirs:             src/main/haskell
   exposed-modules:
-    Listicle.Generate
-    Listicle.Parse
+    Listicle.Avatar
+    Listicle.Config
+    Listicle.Dictionary
+    Listicle.ImageStore
+    Listicle.Name
+    Listicle.News
+    Listicle.Phrase
+    Listicle.Template
     Listicle.Types
-    Listicle.Load
     Listicle.Util
     Listicle.Web.Route
-    Listicle.Web.Template
     Paths_listicle
 
   build-depends:
@@ -59,6 +67,8 @@ library
     , bytestring
     , containers
     , directory
+    , either
+    , mmorph
     , MonadRandom
     , mustache
     , random

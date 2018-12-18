@@ -4,8 +4,11 @@ module Main
 ( main
 ) where
 
+import qualified Control.Monad.Trans.Class       as Trans
+import qualified Control.Monad.Trans.Except      as Except
 import qualified Data.Text                       as Text
-import qualified Listicle.Load                   as Load
+import qualified Listicle.Config                 as Config
+import qualified Listicle.Template               as Template
 import qualified Listicle.Web.Route              as Route
 import qualified Paths_listicle                  as Cabal
 import qualified Web.Scotty                      as Scotty
@@ -13,21 +16,25 @@ import qualified Web.Scotty                      as Scotty
 import Data.Array (Array)
 import Data.Monoid ((<>))
 import Data.Text (Text)
-import Listicle.Web.Template (Template)
+import Listicle.Template (Template)
 
 import Listicle.Types
 
 main :: IO ()
 main = do
-    resourcesDir <- Cabal.getDataFileName Load.resourcesBaseDir
-    config       <- Load.config resourcesDir
-    templates    <- Load.templates (resourcesDir <> "template")
+    resourcesDir <- Cabal.getDataFileName Config.resourcesBaseDir
+    result       <- Except.runExceptT $ do
+        config    <- Config.load resourcesDir
+        templates <- Template.load (resourcesDir <> "template")
+        Trans.lift $ startWebServer config templates resourcesDir 3000
 
-    startWebServer config templates resourcesDir 3000
+    case result of
+        (Right ())   -> pure ()
+        (Left error) -> fail (Text.unpack error)
 
 startWebServer :: Config
                -> Array Int Template
-               -> String
+               -> FilePath
                -> Int
                -> IO ()
 startWebServer config templates resourcesDir port = Scotty.scotty port $ do

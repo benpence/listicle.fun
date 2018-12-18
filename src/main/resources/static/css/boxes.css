@@ -1,0 +1,67 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+}
+
+a.menu {
+  font-size: 20px;
+  padding: 10px;
+}
+
+#content {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#stories {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.story {
+  border: 1px solid #ddd;
+  margin: 5px;
+  width: 600px;
+  box-shadow: 5px 5px 5px -5px #999;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.story:first-child {
+  margin-top: 0px;
+}
+
+.story-text {
+  padding: 15px;
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+}
+
+.story-text p {
+  margin: 0px;
+}
+
+.story-headline {
+  font-size: 24px;
+  text-align: justify;
+  font-family: 'Patrick Hand',Helvetica,Arial,sans-serif;
+}
+
+.story-summary {
+  font-style: italic;
+  padding: 3px 0px 3px 0px;
+}
+
+.story-author-name {
+  font-weight: bold;
+  cursor: pointer;
+}

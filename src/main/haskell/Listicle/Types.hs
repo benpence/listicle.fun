@@ -15,8 +15,11 @@ data Config
     = Config
       { configParams     :: Params
       , configDicts      :: Map Text Dictionary
-      , configHeadlines  :: Array Int Headline
+      , configHeadlines  :: Array Int Phrase
+      , configSummaries  :: Array Int Phrase
       , configImageStore :: ImageStore
+      , configNames      :: Array Int Text
+      , configAvatars    :: Array Int Text
       }
     deriving (Eq, Show, Ord, Generic)
 
@@ -28,6 +31,23 @@ data Params
       }
     deriving (Eq, Show, Ord, Generic)
 
+
+data Page
+    = Page
+      { pageMainStories :: [Story]
+      , pageSideStories :: [Story]
+      }
+    deriving (Eq, Show, Ord, Generic)
+
+data Story
+    = Story
+      { storyHeadline :: Text
+      , storySummary  :: Text
+      , storyAuthor   :: Text
+      , storyAvatar   :: Text
+      , storyImage    :: Image
+      }
+    deriving (Eq, Show, Ord, Generic)
 
 data Dictionary
     = Dictionary (Array Int Term)
@@ -41,15 +61,11 @@ data Term
     deriving (Eq, Show, Ord, Generic)
 
 
-data Story
-    = Story (Text, Image)
+data Phrase
+    = Phrase [PhrasePart]
     deriving (Eq, Show, Ord, Generic)
 
-data Headline
-    = Headline [HeadlinePart]
-    deriving (Eq, Show, Ord, Generic)
-
-data HeadlinePart 
+data PhrasePart 
     = NormalText Text
     | Number
     | FillIn (Array Int FillInPath)

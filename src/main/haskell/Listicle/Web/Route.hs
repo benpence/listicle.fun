@@ -2,18 +2,19 @@
 {-# LANGUAGE RecordWildCards #-}
 
 module Listicle.Web.Route
-  ( generateSeed
-  , static
-  , withSeed
-  ) where
+( generateSeed
+, static
+, withSeed
+) where
 
 import qualified Control.Monad.IO.Class          as IO
 import qualified Control.Monad.Random            as Random
+import qualified Control.Monad.Trans.Except      as Except
 import qualified Data.Text                       as Text
 import qualified Data.Text.Lazy                  as LazyText
-import qualified Listicle.Generate               as Generate
 import qualified Listicle.Util                   as Util 
-import qualified Listicle.Web.Template           as Template
+import qualified Listicle.News                   as News 
+import qualified Listicle.Template               as Template
 import qualified Paths_listicle                  as Cabal
 import qualified System.Random                   as Random
 import qualified Web.Scotty                      as Scotty
@@ -21,7 +22,7 @@ import qualified Web.Scotty                      as Scotty
 import Control.Monad.Random (Rand)
 import Data.Array (Array)
 import Data.Text (Text)
-import Listicle.Web.Template (Template)
+import Listicle.Template (Template)
 import System.Random (RandomGen)
 
 import Listicle.Types
@@ -35,15 +36,14 @@ withSeed config@(Config { .. }) templates = do
         
         let
             generateHtml = do
-                mainStories  <- Generate.stories config
-                sideStories  <- Generate.stories config
-                template     <- Util.randomFromArray templates
+                page     <- News.generatePage config
+                template <- Template.generate templates
 
-                pure (Template.render template mainStories sideStories)
+                pure (Template.render template page)
 
-        case Random.evalRandT generateHtml (Random.mkStdGen seed) of
-            (Just html) -> Scotty.html (LazyText.fromStrict html)
-            Nothing     -> Scotty.html "Error"
+        case Except.runExcept (Random.evalRandT generateHtml (Random.mkStdGen seed)) of
+            (Right html) -> Scotty.html (LazyText.fromStrict html)
+            (Left error) -> Scotty.html (LazyText.fromStrict error)
 
 generateSeed :: Scotty.ScottyM ()
 generateSeed =
