@@ -26,7 +26,7 @@ defaultParams :: Params
 defaultParams = Params {
     paramsMinNumber = 3,
     paramsMaxNumber = 30,
-    paramsStoriesPerPage = 40 }
+    paramsStoriesPerPage = 120 }
 
 resourcesBaseDir :: FilePath
 resourcesBaseDir = "src/main/resources/"
@@ -48,4 +48,5 @@ load resourcesDir = do
         configSummaries  = summaries,
         configImageStore = imageStore,
         configNames      = names,
-        configAvatars    = avatars }
+        configAvatars    = avatars
+    }

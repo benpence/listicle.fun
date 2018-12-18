@@ -1,11 +1,269 @@
 {
     "Beijing": {
-        "demonym": "Beijing"
+        "demonym": "Pekinese"
     },
     "China": {
         "demonym": "Chinese"
     },
     "Florida": {
         "demonym": "Florida"
+    },
+    "Orlando": {
+		"demonym": "Orlando"
+    },
+    "Sydney": {
+		"demonym": "Sydneysider"
+    },
+    "London": {
+		"demonym": "Londoner"
+    },
+    "Paris": {
+		"demonym": "Parisian"
+    },
+    "Venice": {
+		"demonym": "Venetian"
+    },
+    "Manhattan": {
+		"demonym": "Manhattanite"
+    },
+    "Cape Town": {
+		"demonym": "Cape Town"
+    },
+    "Las Vegas": {
+		"demonym": "Las Vegas"
+    },
+    "Rome": {
+		"demonym": "Roman"
+    },
+    "Great Barrier Reef": {
+		"demonym": "Great Barrier Reef"
+    },
+    "Rio De Janeiro": {
+		"demonym": "Rio De Janeiro"
+    },
+    "Maldives": {
+		"demonym": "Maldives"
+    },
+    "Hawaii": {
+		"demonym": "Hawaiian"
+    },
+    "Grand Canyon": {
+		"demonym": "Grand Canyon"
+    },
+    "South Island": {
+		"demonym": "South Island"
+    },
+    "San Diego": {
+		"demonym": "San Diego"
+    },
+    "San Francisco": {
+		"demonym": "San Francisco"
+    },
+    "Niagara Falls": {
+		"demonym": "Niagara Falls"
+    },
+    "Los Angeles": {
+		"demonym": "Los Angeles"
+    },
+    "Dubai": {
+		"demonym": "Dubai"
+    },
+    "Auckland": {
+		"demonym": "Auckland"
+    },
+    "Singapore": {
+		"demonym": "Singaporean"
+    },
+    "Seychelles": {
+		"demonym": "Seychelles"
+    },
+    "Bali": {
+		"demonym": "Balinese"
+    },
+    "Durban": {
+		"demonym": "Durban"
+    },
+    "Bangkok": {
+		"demonym": "Bangkok"
+    },
+    "Cairns": {
+		"demonym": "Cairns"
+    },
+    "Iceland": {
+		"demonym": "Icelandic"
+    },
+    "Costa Del Sol": {
+		"demonym": "Costa Del Sol"
+    },
+    "Antigua &amp; Barbuda": {
+		"demonym": "Antigua &amp; Barbuda"
+    },
+    "Melbourne": {
+		"demonym": "Melbourne"
+    },
+    "Giza": {
+		"demonym": "Giza"
+    },
+    "Mallorca": {
+		"demonym": "Mallorca"
+    },
+    "Lake District": {
+		"demonym": "Lake District"
+    },
+    "Barbados": {
+		"demonym": "Barbados"
+    },
+    "Bahamas": {
+		"demonym": "Bahamas"
+    },
+    "Abu Simbel": {
+		"demonym": "Abu Simbel"
+    },
+    "Bora Bora": {
+		"demonym": "Bora Bora"
+    },
+    "Sharm El Sheikh": {
+		"demonym": "Sharm El Sheikh"
+    },
+    "New York": {
+		"demonym": "New York"
+    },
+    "Algarve": {
+		"demonym": "Algarve"
+    },
+    "Madrid": {
+		"demonym": "Madrid"
+    },
+    "Zermatt": {
+		"demonym": "Zermatt"
+    },
+    "Victoria Falls": {
+		"demonym": "Victoria Falls"
+    },
+    "Marbella": {
+		"demonym": "Marbella"
+    },
+    "Chichen Itza": {
+		"demonym": "Chichen Itza"
+    },
+    "Masai Mara": {
+		"demonym": "Masai Mara"
+    },
+    "Disney World": {
+		"demonym": "Disney World"
+    },
+    "Florence": {
+		"demonym": "Florentine"
+    },
+    "Puerto Banus": {
+		"demonym": "Puerto Banus"
+    },
+    "Toronto": {
+		"demonym": "Torontonian"
+    },
+    "Agra": {
+		"demonym": "Agra"
+    },
+    "Edinburgh": {
+		"demonym": "Edinburgensian"
+    },
+    "Menorca": {
+		"demonym": "Menorca"
+    },
+    "Monaco": {
+		"demonym": "Monegasque"
+    },
+    "Luxor": {
+		"demonym": "Luxor"
+    },
+    "Hong Kong": {
+		"demonym": "Hong Kong"
+    },
+    "Koh Samui": {
+		"demonym": "Koh Samui"
+    },
+    "Banff": {
+		"demonym": "Banff"
+    },
+    "Sorrento": {
+		"demonym": "Sorrento"
+    },
+    "Key West": {
+		"demonym": "Key West"
+    },
+    "Cancun": {
+		"demonym": "Cancun"
+    },
+    "Nice": {
+		"demonym": "Niçois"
+    },
+    "Machu Picchu": {
+		"demonym": "Machu Picchu"
+    },
+    "Yosemite National Park": {
+		"demonym": "Yosemite National Park"
+    },
+    "Oahu": {
+		"demonym": "Oahu"
+    },
+    "Guam": {
+		"demonym": "Guam"
+    },
+    "Dublin": {
+		"demonym": "Dublin"
+    },
+    "Vancouver": {
+		"demonym": "Vancouver"
+    },
+    "Cayman Islands": {
+		"demonym": "Cayman Islands"
+    },
+    "Naples": {
+		"demonym": "Neapolitan"
+    },
+    "Ibiza": {
+		"demonym": "Ibiza"
+    },
+    "Barcelona": {
+		"demonym": "Barcelonian"
+    },
+    "Adelaide": {
+		"demonym": "Adelaidean"
+    },
+    "Buenos Aires": {
+		"demonym": "Bonaerense"
+    },
+    "Prague": {
+		"demonym": "Praguer"
+    },
+    "Cuba": {
+		"demonym": "Cuban"
+    },
+    "Paphos": {
+		"demonym": "Paphos"
+    },
+    "Galapagos Islands": {
+		"demonym": "Galapagos"
+    },
+    "Isle of Man": {
+		"demonym": "Isle of Man"
+    },
+    "Kusadasi": {
+		"demonym": "Kusadasi"
+    },
+    "Chamonix": {
+		"demonym": "Chamonix"
+    },
+    "Amsterdam": {
+		"demonym": "Amsterdammer"
+    },
+    "Cannes": {
+		"demonym": "Cannes"
+    },
+    "Iguassu Falls": {
+		"demonym": "Iguassu Falls"
+    },
+    "Berlin": {
+		"demonym": "Berliner"
     }
 }

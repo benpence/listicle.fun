@@ -31,7 +31,7 @@
         {{/mainStories}}
       </div>
 
-      <div id="sidebar" class="box-top">
+      <div id="sidebar">
         {{#sideStories}}
         <div class="sidebar-story">
           <img class="sidebar-image" src="{{imagePath}}" />

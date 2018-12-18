@@ -1,5 +1,5 @@
-.box-top {
-  border-top: 8px solid #000;
+body {
+  background-color: #eee;
 }
 
 header {
@@ -34,6 +34,7 @@ a.menu {
   width: 600px;
   box-shadow: 5px 5px 5px -5px #999;
   cursor: pointer;
+  background-color: #fff;
 
   display: flex;
   flex-direction: row;
@@ -81,8 +82,9 @@ a.menu {
 
 #sidebar {
   display: flex;
-  flex-flow: column-reverse;
+  flex-flow: column;
   border: 1px solid #ddd;
+  border-top: 8px solid #000;
   box-shadow: 5px 5px 5px -5px #999;
 }
 
@@ -93,13 +95,14 @@ a.menu {
   width: 333px;
   padding: 5px 0px 5px 0px;
   cursor: pointer;
-}
-
-.sidebar-story:last-child {
-  padding: 0px 0px 5px 0px;
+  background-color: #fff;
 }
 
 .sidebar-story:first-child {
+  padding: 0px 0px 5px 0px;
+}
+
+.sidebar-story:last-child {
   padding: 5px 0px 0px 0px;
 }
 
